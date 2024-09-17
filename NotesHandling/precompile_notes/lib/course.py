@@ -39,7 +39,7 @@ class Course:
     @property
     def root_path(self) -> Path:
         diploma = "BA" if self.is_bachelor else "MA"
-        return Path(f"{diploma}{self.semester}/NotesCours/{self.name}") 
+        return Path(f"{diploma}{self.semester}/{self.name}") 
     
     @property
     def loader(self) -> FileLoader:
