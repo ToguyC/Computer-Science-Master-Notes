@@ -11,10 +11,8 @@ TEMPLATES_PATH = Path("NotesHandling/precompile_notes/templates")
 MAIN_TEMPLATE_PATH = TEMPLATES_PATH / "main_template.tex"
 LATEX_TEMPLATE_PATH = TEMPLATES_PATH / "latex_template.tex"
 SUMMARY_BY_LECTURE_TEMPLATE_PATH = TEMPLATES_PATH / "summary_by_lecture_template.tex"
-FOREWORD_EN_PATH = TEMPLATES_PATH / "foreword_en.tex"
-FOREWORD_FR_PATH = TEMPLATES_PATH / "foreword_fr.tex"
-HOMMAGE_EN_PATH = TEMPLATES_PATH / "hommage_en.tex"
-HOMMAGE_FR_PATH = TEMPLATES_PATH / "hommage_fr.tex"
+FOREWORD_PATH = TEMPLATES_PATH / "foreword.tex"
+HOMMAGE_PATH = TEMPLATES_PATH / "hommage.tex"
 
 
 class FileLoader:
@@ -65,13 +63,13 @@ class FileLoader:
         return FileLoader._load_template(SUMMARY_BY_LECTURE_TEMPLATE_PATH)
     
     @staticmethod
-    def foreword(english: bool) -> str:
-        path = FOREWORD_EN_PATH if english else FOREWORD_FR_PATH
+    def foreword() -> str:
+        path = FOREWORD_PATH
         return FileLoader._load_template(path)
     
     @staticmethod
-    def hommage(english: bool) -> str:
-        path = HOMMAGE_EN_PATH if english else HOMMAGE_FR_PATH
+    def hommage() -> str:
+        path = HOMMAGE_PATH
         return FileLoader._load_template(path)
 
 

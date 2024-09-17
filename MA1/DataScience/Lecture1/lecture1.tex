@@ -1,0 +1,135 @@
+% !TeX program = lualatex
+
+\documentclass[a4paper]{article}
+
+% Expanded on 2021-11-01 at 13:13:15.
+
+\usepackage{../../style}
+
+\begin{document}
+	\lecture{1}{2024-09-17}{Concepts fondamentaux et applications}{
+		\begin{itemize}[left=0pt]
+			\item Explication de l'organisation du cours
+			\item Algèbre linéaire
+			\item Probabilités et statistiques
+			\item Données à haute dimensionnalité
+		\end{itemize}
+	}
+
+	\section{Organisation}
+	\begin{parag}{Moodle}
+		Toutes les informations sont sur le Moodle. À consulter régulièrement.
+	\end{parag}
+	
+	\begin{parag}{Ouvrage de référence}
+		\begin{itemize}
+			\item \textbf{Foundations of Data Science} par Blum, Hopcroft, Kannan, Cambridge University Press, 2020. Disponible à la librairie.
+			\item \textbf{Data Mining and Machine Learning: Fundamental Concepts and Algorithms} par Mohammed J. Zaki, Wagner Meira, Gr. Cambridge University Press, 2nd Ed., 2020. Disponible à la librairie.
+		\end{itemize}
+	\end{parag}
+
+	\section{Algèbre linéaire}
+	\begin{parag}{Concepts généraux}
+		\begin{itemize}
+			\item Qu'est-ce qu'un \important{vecteur / espace vectoriel} ?
+			\item Qu'est ce que le \important{produit scalaire} représente ?
+			\item Pourquoi la \important{projection} est un concept important ?
+			\item Qu'est ce qui est critique par rapport au \important{age things} ?
+		\end{itemize}
+	\end{parag}
+
+	\subsection{Vecteurs et espace vectoriel}
+	\begin{parag}{Définition d'un espace vectoriel}
+		Soit un champ $K(\mathbb{Q}\ \text{ou}\ \mathbb{C})$ et un ensemble $V$. Un espace vectoriel sur $K$, est un ensemble $E$, dont les éléments sont appelés vecteurs muni de deux lois :
+		 \begin{itemize}
+			 \item Une loi de composition interne \guillemotleft+\guillemotright : $E^2 \to E$, appelée addition ou somme vectorielle
+			 \item Une loi de composition externe à gauche \guillemotleft\cdot\guillemotright : $K \times E \to E$, appelée multiplication par un scalaire
+		\end{itemize}
+
+		tel que les propriétés suivantes soient vérifiées :
+		\begin{enumerate}
+			\item ($E$, $+$) est un groupe abélien, autrement dit :
+			\begin{itemize}
+				\item la loi \guillemotleft+\guillemotright est commutative,
+				\item elle est associative,
+				\item elle admet un élément neutre $\vec{0_E}$ appelé vecteur nul et, 
+				\item tout vecteur $v$ a un opposé, noté  $-v$.
+			\end{itemize}
+			C'est-à-dire que pour tous vecteurs $\vec{u}$, $\vec{v}$ et $\vec{w}$ de $E$:
+			\begin{align}
+			\begin{split}
+				\vec{u} + \vec{v} &= \vec{v} + \vec{u} \\
+				\vec{u} + (\vec{v} + \vec{w}) &= (\vec{u} + \vec{v}) + \vec{w} \\
+				\vec{0_E} + \vec{v} &= \vec{v} \\
+				\vec{u} + (-\vec{u}) &= \vec{0_E}
+			\end{split}
+			\end{align}
+		\item La loi \guillemotleft\cdot\guillemotright vérifie les propriétés suivantes :
+			\begin{itemize}
+				\item elle est distributive à gauche par rapport à la loi \guillemotleft+\guille de $E$ et à droite par rapport à l'addition du corps  $K$,
+				\item elle vérifie une associativité mixte (par rapport à la multiplication dans $K$),
+				\item l'élément neutre multiplicatif du corps $K$, noté  $\vec{1_K}$, est neutre à gauche pour \cdot.
+			\end{itemize}
+			C'est-à-dire que pour tous vecteur $\vec{u}$,  $\vec{v}$ et  $\vec{w}$ de  $E$, et tous scalaire $\lambda$, $\mu$ :
+			\begin{align}
+			\begin{split}
+				\lambda \cdot \vec{u} + \vec{v} &= (\lambda \cdot \vec{u}) + (\lambda \cdot \vec{v}) \\
+				(\lambda + \mu) \cdot \vec{u} &= (\lambda \cdot \vec{u}) + (\mu \cdot \vec{u}) \\
+				(\lambda\mu) \cdot \vec{u} &= \lambda \cdot (\mu \cdot \vec{u}) \\
+				1_K \cdot \vec{u} &= \vec{u}
+			\end{split}
+			\end{align}
+		\end{enumerate}
+
+		Ces axiomes impliquent que $E$ est non vide et pour tout vecteur $\vec{u}$ de $E$ et tout scalaire $\lambda$ :
+		\begin{align}
+		\begin{split}
+			\lambda \cdot \vec{u} &= \vec{0_E} \Leftrightarrow (\lambda = \vec{0_K}\ \text{ou}\ \vec{u} = \vec{0_E}) \\
+			(-\lambda) \cdot \vec{u} &= -(\lambda \cdot \vec{u}) = \lambda \cdot (-\vec{u})
+		\end{split}
+		\end{align}
+	\end{parag}
+
+	\section{Représentation des espace à haute dimensionnalité}
+	\begin{parag}{Flot de données et représentation}
+		Le flot typique des données vient d'un capteur, qui produit des données brutes qui doivent ensuite être représentée d'une façon ou d'une autre.
+
+		\imagehere{data-flow.png}
+		
+		\begin{center}
+		\begin{tabular}{ | l | l | l | }
+			\hline
+			\textbf{Capteur} & \textbf{Données brutes} & \textbf{Représentation} \\
+			\hline \hline
+			Caméra & Pixels de l'image & Matrice \\
+			Population & Résultats de vote & Matrice \\
+			Document texte & Fréquence de mots & Matrice \\
+			Réseaux sociaux & Relations & Matrice \\
+			Environnement & Mesures & Matrice \\
+			\hline
+		\end{tabular}
+		\end{center}
+
+		On obtient donc des données $\mathcal{X} = \{x_1, \cdots, x_n\}$ où $x_i \in \Omega \subseteq \mathbb{R}^D \quad \forall i \in [\mathbb{N}]$.
+	\end{parag}
+
+	\begin{parag}{Vue statistique}
+		$\mathcal{X}$ est un échantillon de l'ensemble de taille $N$ à $D$-dimensions où $x_i$ correspond à une mesure de la variable aléatoire associée (p.e. Température, humidité). Chaque $x_i$ peut être associé à une PDF, comme par exemple un lancé d'un dé-6 étant limité aux valeurs $[1, 6]$ où chaque face à une probabilité de $\frac{1}{6}$.
+
+		Il est donc possible d'associé une probabilité d'apparition pour chaque valeur de l'ensemble de donnée.
+	\end{parag}
+
+	\begin{parag}{Vue algébrique}
+		Soit $\mathcal{X}$, on forme une matrice $X = \left \begin{pmatrix} | && | \\ x_1 & \cdots & x_N \\ | && | \end{pmatrix} \right \in \mathbb{R}^{D \times N}$ dont les colonnes $X_{\cdot j} = x_j$ sont les vecteurs de données.
+	\end{parag}
+
+	\vspace{2cm}
+
+	\emph{Le cours va porter sur les différentes vues possible (statistique et algébrique), et aussi comprendre ce qu'il se passe quand le nombre de dimension augmente ($D$ et $N$ dans $\mathbb{R}^{D \times N}$)}
+
+	\emph{quand on a un nombre N fix (samples) et que l'on veut augmenter le nombre de bins, la stabilité de la représentation se dégradera de façon exponentielle (slide 9)}
+
+	\emph{$D$ (nombre de dimension ou features) doit être très contrôlé, car si ce nombre augmenter, les données deviennent exponentiellement instable}
+
+	KNN c'est le fait de choisir les K voisins les plus proches, $\epsilon$NN c'est le fait de choisir tout les voisin dans un périmètre $\epsilon$.
+\end{document}

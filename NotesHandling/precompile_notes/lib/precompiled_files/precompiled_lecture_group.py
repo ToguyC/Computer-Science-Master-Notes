@@ -30,11 +30,10 @@ class PrecompiledLectureGroup(AbstractPrecompiledFiles):
         _verify_not_summary(course)
 
         result: List[PrecompiledLecture] = []
-        is_english = course.loader.config().english
         for path in course.loader.lecture_paths():
             loader = LectureLoader(path)
             lecture = loader.to_lecture()
-            precompiled = PrecompiledLecture.from_lecture(lecture, is_english)
+            precompiled = PrecompiledLecture.from_lecture(lecture)
             result.append(precompiled)
         return PrecompiledLectureGroup(course, result)
 
@@ -67,7 +66,6 @@ class PrecompiledLectureGroup(AbstractPrecompiledFiles):
     def _make_main_tex(self, tag: str|None) -> str:
         loader = self.course.loader
         config = loader.config()
-        english = config.english
 
         now = datetime.now()
         current_date = now.strftime("%Y-%m-%d")
@@ -78,14 +76,13 @@ class PrecompiledLectureGroup(AbstractPrecompiledFiles):
             'precompilation_time': current_time,
             'page_style_no_title': r"\fancyhf{}\fancyfoot[LE,RO]{\thepage}",
             'title_alias': config.title_alias,
-            'by': 'by' if english else 'par',
             'title': config.title,
             'professor': config.professor,
-            'date': self.course.date(english),
-            'foreword': loader.foreword(english),
+            'date': self.course.date(),
+            'foreword': loader.foreword(),
             'tag': f"--{tag}" if tag is not None else "",
-            'hommage': loader.hommage(english),
-            'summary_by_lecture_title': 'Summary by lecture' if english else 'Résumé par cours',
+            'hommage': loader.hommage(),
+            'summary_by_lecture_title': 'Summary by lecture',
             'summary_by_lecture_content': self._summary_by_lecture_content(),
             'content': self._content(),
         }

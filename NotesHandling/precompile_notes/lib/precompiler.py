@@ -14,7 +14,7 @@ class Precompiler:
     def __init__(self, latex: str):
         self.latex = latex
     
-    def full_precompile(self, is_english: bool, lecture_info: LectureInfo|None, latex_path: Path, asset_paths: List[Path]) -> "Precompiler":
+    def full_precompile(self, lecture_info: LectureInfo|None, latex_path: Path, asset_paths: List[Path]) -> "Precompiler":
         return Precompiler(self.latex)\
             .remove_before_begin_document()\
             .remove_after_end_document()\
@@ -24,7 +24,6 @@ class Precompiler:
             .replace_chapter_after_lecture_command()\
             .remove_summary_in_lecture_command()\
             .merge_consecutive_empty_slides()\
-            .correct_spaces(is_english)\
             .strip()\
             .apply_template()\
             .make_warnings(lecture_info, latex_path)
@@ -98,38 +97,6 @@ class Precompiler:
         if self.latex.count(r"\begin{slidecomment}") > 0:
             raise NotImplementedError("Merging consecutive empty slides is not implemented yet.")
         return self
-    
-    def correct_spaces(self, is_english: bool) -> "Precompiler":
-        # We do not want to correct spaces in code environments.
-        # We suppose that those \begin and \end are alone
-        # on their line.
-        result = []
-        in_no_touch_env = 0
-        no_touch_envs = ["lstlisting", "filecontents*"]
-        for line in self.latex.split("\n"):
-            begin = re.search(r"\\begin\{(.*)\}", line)
-            end = re.search(r"\\end\{(.*)\}", line)
-            if begin is not None and begin.group(1) in no_touch_envs:
-                in_no_touch_env += 1
-            elif end is not None and end.group(1) in no_touch_envs:
-                in_no_touch_env -= 1
-            elif in_no_touch_env == 0:
-                for char in [";", ":", "!", "?"]:
-                    if is_english:
-                        # Remove spaces
-                        line = line.replace(f" {char}", char)
-                        line = line.replace(f"~{char}", char)
-                    else:
-                        pass
-                        ## Add spaces
-                        #line = line.replace(f" {char}", char)
-                        ## Except for \;, \! https: and http: and watch?v= of youtube
-                        #line = re.sub("(?<!\\\\)\\" + char, "~" + char, line)
-                        #line = line.replace("http~:", "http:")
-                        #line = line.replace("https~:", "https:")
-                        #line = line.replace("watch~?v=", "watch?v=")
-            result.append(line)
-        return Precompiler('\n'.join(result))
     
     def strip(self) -> "Precompiler":
         return Precompiler(self.latex.strip())

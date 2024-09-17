@@ -4,15 +4,12 @@ from typing import List
 from lib.file_loader import FileLoader
 
 # Those are hardcoded, for easier modularity
-BACHELOR_SEMESTERS_EN = [
-    r"Computer science master --- Semester 1 \\ Autumn 2024",
-    r"Computer science master --- Semester 2 \\ Spring 2025",
-    r"Computer science master --- Semester 3 \\ Autumn 2025",
-    r"Computer science master --- Semester 4 \\ Spring 2026",
+MASTER_SEMESTERS = [
+    r"Computer Science Master --- Semester 1 \\ Autumn 2024",
+    r"Computer Science Master --- Semester 2 \\ Spring 2025",
+    r"Computer Science Master --- Semester 3 \\ Autumn 2025",
+    r"Computer Science Master --- Semester 4 \\ Spring 2026",
 ]
-
-MASTER_SEMESTERS_EN: List[str] = []
-
 
 class Course:
     def __init__(self, semester: int, name: str, is_summary: bool = False):
@@ -33,6 +30,6 @@ class Course:
         return FileLoader(self.root_path)
     
     def date(self) -> str:
-        names = MASTER_SEMESTERS_EN
+        names = MASTER_SEMESTERS
         semester = self.semester - 1
         return names[semester]
