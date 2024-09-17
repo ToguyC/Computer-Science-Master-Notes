@@ -1,0 +1,82 @@
+# Inspired from https://stackoverflow.com/a/987162 and https://git-scm.com/docs/gitignore
+
+# We need to ignore and ignoren't folders so that Git works, see second link above.
+/*
+!/BA*
+/BA*/*
+!/BA*/NotesCours
+/BA*/NotesCours/*
+
+# BA1 courses
+!/BA1/NotesCours/Analyse-1
+!/BA1/NotesCours/AICC-1
+!/BA1/NotesCours/AlgebreLinaire
+
+# BA2 courses
+!/BA2/NotesCours/Analyse-2
+!/BA2/NotesCours/Analyse-2-MethodesDeDemonstration
+!/BA2/NotesCours/DigitalSystemDesign
+!/BA2/NotesCours/AICC-2
+
+# BA3 courses
+!/BA3/NotesCours/Algorithms
+!/BA3/NotesCours/Analyse-3
+!/BA3/NotesCours/ComputerNetworks
+!/BA3/NotesCours/NumericalMethods
+!/BA3/NotesCours/IntroToMachineLearning-BA3-Summary
+
+# BA4 courses
+!/BA4/NotesCours/Analyse-4
+!/BA4/NotesCours/ProbabilityAndStatistics
+!/BA4/NotesCours/SignalsAndSystems
+!/BA4/NotesCours/TheoryOfComputation
+
+# BA5 courses
+!/BA5/NotesCours/Algebra
+!/BA5/NotesCours/IntroToQuantumInformationProcessing-Summary
+
+# BA6 courses
+!/BA6/NotesCours/IntroToQuantumComputation-Summary
+
+# Ignore all files in "NotesCours" folder, and allow for a "Dependencies" folder
+/BA*/NotesCours/*-Summary/*
+/BA*/NotesCours/*/*/*
+!/BA*/NotesCours/*/*/Dependencies
+/BA*/NotesCours/*/*/*/*
+
+# Compilation files
+!/NotesHandling
+/NotesHandling/*
+!/NotesHandling/precompile_notes
+/NotesHandling/precompile_notes/*
+!/NotesHandling/precompile_notes/templates
+!/NotesHandling/precompile_notes/lib
+NotesHandling/precompile_notes/lib/__pycache__
+!/NotesHandling/precompile_notes/main.py
+
+# Ignoren't some file extensions
+!*.tex
+!*.json
+!*.png
+!*.jpg
+!*.sty
+!*.txt
+*_questions.txt
+!*.py
+!*.svg
+
+# After my new style, the following still need to be ignored
+*compile_notes.py
+*foreword_en.txt
+*foreword_fr.txt
+*styleold.sty
+
+# There are two types of pdf: some that are used as dependencies, which we want to commit, and some that are the compiled course, which we don't want
+!BA*/NotesCours/*/*/*.pdf
+lecture*.pdf
+frontmatter.pdf
+_*.pdf
+
+# Files for Git
+!.gitignore
+!README.md
