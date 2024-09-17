@@ -1,21 +1,21 @@
 # Inspired from https://stackoverflow.com/a/987162 and https://git-scm.com/docs/gitignore
 
-# We need to ignore and ignoren't folders so that Git works, see second link above.
+# We need to ignore and ignoren't folders so that Git works, MAe MAcond link above.
 /*
-!/SE*
-/SE*/*
-!/SE*
-/SE*/*
+!/MA*
+/MA*/*
+!/MA*
+/MA*/*
 
-# SE1 courses
-!/SE1/DesignScienceResearch
-!/SE1/DataScience
+# MA1 courMAs
+!/MA1/DesignScienceReMAarch/
+!/MA1/DataScience/
 
 # Ignore all files in "NotesCours" folder, and allow for a "Dependencies" folder
-/SE*/*-Summary/*
-/SE*/*/*/*
-!/SE*/*/*/Dependencies
-/SE*/*/*/*/*
+/MA*/*-Summary/*
+/MA*/*/*/*
+!/MA*/*/*/Dependencies
+/MA*/*/*/*/*
 
 # Compilation files
 !/NotesHandling
@@ -24,8 +24,8 @@
 /NotesHandling/precompile_notes/*
 !/NotesHandling/precompile_notes/templates
 !/NotesHandling/precompile_notes/lib
-NotesHandling/precompile_notes/lib/__pycache__
 !/NotesHandling/precompile_notes/main.py
+**/__pycache__/
 
 # Ignoren't some file extensions
 !*.tex
@@ -44,8 +44,8 @@ NotesHandling/precompile_notes/lib/__pycache__
 *foreword_fr.txt
 *styleold.sty
 
-# There are two types of pdf: some that are used as dependencies, which we want to commit, and some that are the compiled course, which we don't want
-!SE*/*/*/*.pdf
+# There are two types of pdf: some that are uMAd as dependencies, which we want to commit, and some that are the compiled courMA, which we don't want
+!MA*/*/*/*.pdf
 lecture*.pdf
 frontmatter.pdf
 _*.pdf
