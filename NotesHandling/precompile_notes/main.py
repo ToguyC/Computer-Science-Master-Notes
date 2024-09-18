@@ -32,7 +32,7 @@ from lib.precompiled_files import PrecompiledLectureGroup
 
 courses: List[Course] = [
     # MA1
-    #Course(semester=1, name="DesignScienceResearch"),
+    Course(semester=1, name="DesignScienceResearch"),
     Course(semester=1, name="DataScience"),
     Course(semester=1, name="DigitalForensics"),
 
@@ -75,7 +75,7 @@ beginning_time = time.time()
 for course in courses:
     Logger.info("#"*10 + f" Handling {course.name}... " + "#"*10)
     lecture_group = PrecompiledLectureGroup.from_course(course)
-    lecture_group.make_code_zip_and_compile(tag.tag, Path("NotesHandling/precompile_notes")/tag.output_dir)
+    lecture_group.make_code_zip_and_compile(tag.tag, Path("compiled")/tag.output_dir)
     #lecture_group.make_code_zip(tag.tag, Path("NotesHandling/precompile_notes")/tag.output_dir)
 
     Logger.newline()

@@ -1,7 +1,7 @@
 from enum import Enum
 
 class Tags(Enum):
-    NONE = (None, "temp-2")
+    NONE = (None, "default")
     PRINTED = ("Printed", "printed")
     OFFICIAL = ("Official", "official")
 
