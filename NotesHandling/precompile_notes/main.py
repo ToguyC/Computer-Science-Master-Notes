@@ -33,7 +33,8 @@ from lib.precompiled_files import PrecompiledLectureGroup
 courses: List[Course] = [
     # MA1
     #Course(semester=1, name="DesignScienceResearch"),
-    Course(semester=1, name="DataScience")
+    Course(semester=1, name="DataScience"),
+    Course(semester=1, name="DigitalForensics"),
 
     # BA1
     #Course(is_bachelor=True, semester=1, name="Analyse-1"),

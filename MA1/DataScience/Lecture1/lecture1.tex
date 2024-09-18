@@ -118,11 +118,26 @@
 
 		Il est donc possible d'associé une probabilité d'apparition pour chaque valeur de l'ensemble de donnée.
 	\end{parag}
-
+	
 	\begin{parag}{Vue algébrique}
 		Soit $\mathcal{X}$, on forme une matrice $X = \left \begin{pmatrix} | && | \\ x_1 & \cdots & x_N \\ | && | \end{pmatrix} \right \in \mathbb{R}^{D \times N}$ dont les colonnes $X_{\cdot j} = x_j$ sont les vecteurs de données.
 	\end{parag}
 
+	\vspace{1cm}
+
+	Un espace de représentation a des propriété bien définies qui sont les suivantes :
+	\begin{itemize}
+		\item L'espace de représentation $\Omega$ est généralement un sous-ensemble de $\mathbb{R}^D$
+		\item $\Omega$ est un \important{espace vectoriel} et peut être créer à partir d'un \important{espace de produit scalaire}. Dans ce cas, le produit scalaire $\langle \cdot, \cdot \rangle$ induit une norme $\|\cdot\|$, qui est elle-même induit une function de distance $d(\cdot, \cdot)$
+		\item C'est donc le cas favorable où $(\Omega, d)$ est un \important{espace métrique} sur lequel un \important{apprentissage} peut être fait.
+	\end{itemize}
+
+	Cependant, certaines questions surviennent :
+	\begin{itemize}
+		\item Que ce passe-t-il lorsque $D$ et/ou $N$ augmente ?
+		\item Comment cela impacte la modélisation de données et comment y faire face ?
+		\item Comment cela impacte l'apprentissage ? La fameuse \important{Curse of Dimensionality}.
+	\end{itemize}
 	\vspace{2cm}
 
 	\emph{Le cours va porter sur les différentes vues possible (statistique et algébrique), et aussi comprendre ce qu'il se passe quand le nombre de dimension augmente ($D$ et $N$ dans $\mathbb{R}^{D \times N}$)}
